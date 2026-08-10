@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches
+.pytest_cache/
+.cache/
+.ipynb_checkpoints/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Large Dataset Files & Archives (Too large for GitHub)
+archive/
+archive.zip
+second dataset/
+PythonApplication1/
+*.docx
+
+# Large Binary Feature Arrays
+artifacts/features/*.npy
+
+# Logs & Temporary Files
+artifacts/logs/*.log
+*.log
+.DS_Store
+Thumbs.db

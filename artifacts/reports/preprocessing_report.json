@@ -1,0 +1,55 @@
+{
+  "preprocessing_settings": {
+    "image_size": [
+      128,
+      128
+    ],
+    "color_mode": "rgb",
+    "normalize": true,
+    "normalization_method": "minmax"
+  },
+  "splits": {
+    "train": {
+      "num_images": 11207,
+      "X_shape": [
+        11207,
+        128,
+        128,
+        3
+      ],
+      "y_shape": [
+        11207
+      ],
+      "min_val": 0.0,
+      "max_val": 1.0
+    },
+    "val": {
+      "num_images": 2402,
+      "X_shape": [
+        2402,
+        128,
+        128,
+        3
+      ],
+      "y_shape": [
+        2402
+      ],
+      "min_val": 0.0,
+      "max_val": 1.0
+    },
+    "test": {
+      "num_images": 2402,
+      "X_shape": [
+        2402,
+        128,
+        128,
+        3
+      ],
+      "y_shape": [
+        2402
+      ],
+      "min_val": 0.0,
+      "max_val": 1.0
+    }
+  }
+}

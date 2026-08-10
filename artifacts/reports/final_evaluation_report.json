@@ -1,0 +1,75 @@
+{
+  "num_models_evaluated": 7,
+  "class_names": [
+    "Bacterial Spot",
+    "Early Blight",
+    "Late Blight",
+    "Leaf Mold",
+    "Septoria Leaf Spot",
+    "Spider Mites",
+    "Target Spot",
+    "Yellow Leaf Curl Virus",
+    "Mosaic Virus",
+    "Healthy"
+  ],
+  "results": [
+    {
+      "model_name": "EfficientNetB0",
+      "accuracy": 0.9641965029142381,
+      "precision": 0.9646124232637847,
+      "recall": 0.9641965029142381,
+      "f1": 0.9637812279392696,
+      "roc_auc": null
+    },
+    {
+      "model_name": "Custom CNN",
+      "accuracy": 0.8613655287260616,
+      "precision": 0.8819013105285423,
+      "recall": 0.8613655287260616,
+      "f1": 0.86349376496701,
+      "roc_auc": null
+    },
+    {
+      "model_name": "SVM",
+      "accuracy": 0.8118234804329725,
+      "precision": 0.8091348596375479,
+      "recall": 0.8118234804329725,
+      "f1": 0.8091945285880581,
+      "roc_auc": null
+    },
+    {
+      "model_name": "GradientBoosting",
+      "accuracy": 0.7077435470441299,
+      "precision": 0.7062720469694043,
+      "recall": 0.7077435470441299,
+      "f1": 0.7038746860405828,
+      "roc_auc": null
+    },
+    {
+      "model_name": "RandomForest",
+      "accuracy": 0.6594504579517069,
+      "precision": 0.6661117016880314,
+      "recall": 0.6594504579517069,
+      "f1": 0.6328853316952336,
+      "roc_auc": null
+    },
+    {
+      "model_name": "DecisionTree",
+      "accuracy": 0.46711074104912575,
+      "precision": 0.46871290598007864,
+      "recall": 0.46711074104912575,
+      "f1": 0.4671072675631009,
+      "roc_auc": null
+    },
+    {
+      "model_name": "AdaBoost",
+      "accuracy": 0.3263946711074105,
+      "precision": 0.24676118965664612,
+      "recall": 0.3263946711074105,
+      "f1": 0.2570402018630359,
+      "roc_auc": null
+    }
+  ],
+  "best_model": "EfficientNetB0",
+  "best_f1": 0.9637812279392696
+}
