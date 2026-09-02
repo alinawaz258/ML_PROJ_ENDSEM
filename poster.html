@@ -5,268 +5,347 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academic Poster: Tomato Leaf Disease Detection</title>
     <style>
-        :root {
-            --primary-color: #003366; /* Deep Academic Blue */
-            --secondary-color: #4CAF50; /* Agriculture Green */
-            --bg-color: #f4f6f8;
-            --box-bg: #ffffff;
-            --text-color: #333333;
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+
+        /* Force exactly one A3 page when printing */
+        @page {
+            size: A3 portrait;
+            margin: 0;
         }
-        
+
+        :root {
+            --primary: #0f2027;
+            --secondary: #203a43;
+            --accent: #2c5364;
+            --highlight: #00c6ff;
+            --text-dark: #2d3436;
+            --text-light: #636e72;
+            --card-bg: #ffffff;
+            --bg: #f0f2f5;
+        }
+
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            /* A3 Size Ratio roughly */
-            width: 1200px;
-            height: 1697px;
-            margin: 20px auto;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
-            background: white;
-            position: relative;
+            background-color: #555; /* Dark background for preview */
+            display: flex;
+            justify-content: center;
+            font-family: 'Open Sans', sans-serif;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        /* The actual Poster Container - STRICT A3 Dimensions */
+        .poster {
+            width: 297mm;
+            height: 420mm;
+            background-color: var(--bg);
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
             box-sizing: border-box;
+            background-image: radial-gradient(#d7dadd 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
-        .poster-header {
-            background-color: var(--primary-color);
+        /* Stunning Gradient Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
             color: white;
-            padding: 40px 20px;
+            padding: 35px 40px;
             text-align: center;
-            border-bottom: 8px solid var(--secondary-color);
+            border-bottom: 6px solid var(--highlight);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
         }
 
-        .poster-header h1 {
-            margin: 0;
-            font-size: 48px;
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 42px;
             font-weight: 800;
+            margin: 0 0 10px 0;
             letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0 0 5px 0;
+            color: #e0f7fa;
+        }
+
+        .header h3 {
+            font-size: 18px;
+            font-weight: 400;
+            margin: 0;
+            color: #b2ebf2;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        .poster-header h2 {
-            margin: 15px 0 5px 0;
-            font-size: 28px;
-            font-weight: 400;
-        }
-
-        .poster-header h3 {
-            margin: 0;
-            font-size: 22px;
-            font-weight: 300;
-            color: #d1e0e0;
-        }
-
-        .poster-content {
+        /* 3-Column Layout */
+        .content {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 25px;
-            padding: 30px;
-            height: calc(100% - 300px);
+            gap: 20px;
+            padding: 20px;
+            flex: 1;
         }
 
         .column {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
         }
 
-        .section-box {
-            background: var(--box-bg);
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border: 2px solid #e0e0e0;
-            border-top: 6px solid var(--primary-color);
+        /* Beautiful Floating Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.04);
+            position: relative;
         }
 
-        .section-box h4 {
-            margin: -20px -20px 20px -20px;
-            padding: 15px 20px;
-            background: #f0f4f8;
-            color: var(--primary-color);
-            font-size: 24px;
-            border-bottom: 2px solid #e0e0e0;
-            border-radius: 8px 8px 0 0;
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--highlight), var(--accent));
+            border-radius: 12px 12px 0 0;
+        }
+
+        .card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         p, li {
-            font-size: 18px;
+            font-size: 14px;
             line-height: 1.6;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            margin-top: 0;
         }
 
+        ul {
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Image Styling */
         .img-container {
             text-align: center;
             margin: 15px 0;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #eee;
         }
 
         .img-container img {
             max-width: 100%;
+            max-height: 220px;
+            object-fit: contain;
             border-radius: 4px;
-            border: 1px solid #ddd;
         }
 
         .img-caption {
-            font-size: 14px;
-            color: #666;
-            margin-top: 5px;
+            font-size: 11px;
+            color: var(--text-light);
+            margin-top: 8px;
             font-style: italic;
         }
 
+        /* Custom Table */
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 15px 0;
-            font-size: 16px;
+            font-size: 13px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
+            padding: 12px 10px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
         }
 
         th {
-            background-color: var(--primary-color);
+            background-color: var(--secondary);
             color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
 
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        .highlight {
+        tr:nth-child(even) { background-color: #fafafa; }
+        
+        .winner {
+            background-color: #e3f2fd !important;
             font-weight: bold;
-            color: var(--secondary-color);
+            color: #0277bd;
+        }
+
+        /* Metric Pill */
+        .metric-pill {
+            display: inline-block;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            margin: 5px 0;
         }
     </style>
 </head>
 <body>
 
-    <div class="poster-header">
-        <h1>AI-Based Tomato Leaf Disease Detection</h1>
-        <h2>Ali Nawaz</h2>
-        <h3>SRM Institute of Science and Technology</h3>
-    </div>
+    <!-- Strict A3 Container -->
+    <div class="poster">
+        
+        <!-- Header -->
+        <div class="header">
+            <h1>AI-Based Tomato Leaf Disease Detection</h1>
+            <h2>Ali Nawaz</h2>
+            <h3>SRM Institute of Science and Technology</h3>
+        </div>
 
-    <div class="poster-content">
-        <!-- COLUMN 1 -->
-        <div class="column">
-            <div class="section-box">
-                <h4>1. Abstract & Introduction</h4>
-                <p>Tomato diseases severely impact agricultural yield and quality. Early and accurate detection is crucial for effective disease management.</p>
-                <p>This project develops a comprehensive Machine Learning and Deep Learning pipeline to automatically classify tomato leaf diseases from images, comparing classical feature engineering against modern deep learning architectures.</p>
-            </div>
-
-            <div class="section-box">
-                <h4>2. Dataset Overview</h4>
-                <p>The <strong>PlantVillage</strong> dataset subset for Tomatoes was utilized.</p>
-                <ul>
-                    <li><strong>Total Images:</strong> 16,011</li>
-                    <li><strong>Classes:</strong> 9 Diseases + 1 Healthy</li>
-                    <li><strong>Split:</strong> 70% Train, 15% Val, 15% Test</li>
-                </ul>
-                <div class="img-container">
-                    <img src="artifacts/figures/sample_images.png" alt="Sample Images">
-                    <div class="img-caption">Sample leaf images across different classes</div>
-                </div>
-            </div>
+        <!-- 3 Columns Content -->
+        <div class="content">
             
-            <div class="section-box">
-                <h4>3. Feature Engineering (Classical ML)</h4>
-                <p>To train classical ML models, raw images were converted into numerical features:</p>
-                <ul>
-                    <li><strong>HOG:</strong> Captured shape and edge gradients.</li>
-                    <li><strong>LBP:</strong> Captured leaf texture patterns.</li>
-                    <li><strong>Color Histograms:</strong> Captured disease discoloration (HSV space).</li>
-                </ul>
-                <p><strong>Dimensionality Reduction:</strong> Principal Component Analysis (PCA) was applied to reduce the 1,886-dimensional feature vector down to the top <strong>50 principal components</strong> for efficiency.</p>
-            </div>
-        </div>
-
-        <!-- COLUMN 2 -->
-        <div class="column">
-            <div class="section-box">
-                <h4>4. Methodology & Models</h4>
-                <p>We conducted a comparative study across three paradigms:</p>
-                
-                <p><strong>A. Regression (Baseline)</strong><br>
-                Attempted to predict class indices continuously. As expected, performance was very poor (R² = 0.30, Acc = 15%), proving regression is unsuitable for categorical classification.</p>
-                
-                <p><strong>B. Classical ML Classifiers</strong><br>
-                Trained on PCA features. Evaluated Bayesian Logistic Regression, Decision Trees, Random Forests, Gradient Boosting, and Support Vector Machines (SVM).</p>
-                
-                <p><strong>C. Deep Learning (Neural Networks)</strong><br>
-                Trained directly on raw pixel data ($128 \times 128 \times 3$).</p>
-                <ul>
-                    <li><strong>Custom CNN:</strong> A 3-block convolutional neural network built from scratch in PyTorch.</li>
-                    <li><strong>EfficientNetB0:</strong> Transfer learning applied to a state-of-the-art pre-trained architecture.</li>
-                </ul>
-            </div>
-
-            <div class="section-box">
-                <h4>5. Lab Results: Bayesian LR vs SVM</h4>
-                <p>Using the handcrafted PCA features, SVM significantly outperformed Bayesian Logistic Regression due to its RBF kernel's ability to model non-linear boundaries.</p>
-                <div class="img-container">
-                    <img src="lab2_output.png" alt="Lab 2 Output">
-                    <div class="img-caption">Accuracy Comparison: Lab 2 Results</div>
+            <!-- COLUMN 1: INTRO & DATASET -->
+            <div class="column">
+                <div class="card">
+                    <h4>🔍 1. Abstract</h4>
+                    <p>Tomato diseases severely impact agricultural yield. Early, automated detection via imagery is crucial for crop management.</p>
+                    <p>This research evaluates a full pipeline comparing <strong>Classical Machine Learning</strong> (using handcrafted features) against modern <strong>Deep Learning</strong> architectures to classify healthy and diseased tomato leaves.</p>
                 </div>
-            </div>
-        </div>
 
-        <!-- COLUMN 3 -->
-        <div class="column">
-            <div class="section-box">
-                <h4>6. Final Benchmarking Results</h4>
-                <p>Deep learning models trained on raw images drastically outperformed classical models trained on handcrafted features.</p>
-                <table>
-                    <tr>
-                        <th>Model</th>
-                        <th>Accuracy</th>
-                        <th>F1-Score</th>
-                    </tr>
-                    <tr>
-                        <td class="highlight">EfficientNetB0</td>
-                        <td class="highlight">96.42%</td>
-                        <td class="highlight">0.96</td>
-                    </tr>
-                    <tr>
-                        <td>Custom CNN</td>
-                        <td>86.14%</td>
-                        <td>0.86</td>
-                    </tr>
-                    <tr>
-                        <td>SVM (RBF)</td>
-                        <td>81.18%</td>
-                        <td>0.81</td>
-                    </tr>
-                    <tr>
-                        <td>Gradient Boosting</td>
-                        <td>70.77%</td>
-                        <td>0.70</td>
-                    </tr>
-                    <tr>
-                        <td>Bayesian LR</td>
-                        <td>65.65%</td>
-                        <td>0.65</td>
-                    </tr>
-                </table>
-                <div class="img-container">
-                    <img src="artifacts/figures/cm_efficientnetb0.png" alt="EfficientNet Confusion Matrix">
-                    <div class="img-caption">Confusion Matrix: EfficientNetB0 (96.42% Acc)</div>
+                <div class="card">
+                    <h4>📊 2. Dataset Overview</h4>
+                    <p>The <strong>PlantVillage</strong> subset for Tomatoes was utilized, containing varied disease presentations.</p>
+                    <ul>
+                        <li><strong>Total Images:</strong> 16,011</li>
+                        <li><strong>Classes:</strong> 9 Diseases + 1 Healthy</li>
+                        <li><strong>Split:</strong> 70% Train, 15% Val, 15% Test</li>
+                    </ul>
+                    <div class="img-container">
+                        <img src="artifacts/figures/sample_images.png" alt="Sample Images">
+                        <div class="img-caption">Figure 1: Sample images across the 10 classes</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>⚙️ 3. Feature Extraction (Classical ML)</h4>
+                    <p>To train models like SVM and Random Forest, we extracted geometric and textural features:</p>
+                    <ul>
+                        <li><strong>HOG:</strong> Edge gradients and shapes.</li>
+                        <li><strong>LBP:</strong> Local surface texture patterns.</li>
+                        <li><strong>Color Hist:</strong> Disease discoloration mapping.</li>
+                    </ul>
+                    <p><strong>PCA Reduction:</strong> The massive 1,886-dim feature vector was compressed to <strong>50 principal components</strong> to optimize model training speed.</p>
                 </div>
             </div>
 
-            <div class="section-box">
-                <h4>7. Conclusion & Deployment</h4>
-                <ul>
-                    <li><strong>Deep Learning Wins:</strong> EfficientNetB0 achieved 96.4% accuracy, proving that automated feature extraction via CNNs is superior for complex agricultural image data.</li>
-                    <li><strong>Deployment:</strong> The best model is deployed via a <strong>Streamlit Web Application</strong>, allowing farmers to upload leaf photos and receive real-time disease diagnostics and confidence probabilities.</li>
-                </ul>
+            <!-- COLUMN 2: LAB RESULTS & ARCHITECTURE -->
+            <div class="column">
+                <div class="card">
+                    <h4>🧠 4. Methodology</h4>
+                    
+                    <p><strong>A. Regression (Lab 1 Baseline)</strong><br>
+                    Attempted continuous prediction of class indices. Proved that regression is incompatible with categorical diseases (Acc: 15%).</p>
+                    
+                    <p><strong>B. Classical Classifiers (Lab 2)</strong><br>
+                    Evaluated Bayesian Logistic Regression vs. SVM (RBF) on the PCA-reduced feature space.</p>
+                    
+                    <p><strong>C. Deep Learning</strong><br>
+                    Trained directly on $128 \times 128 \times 3$ raw pixels.</p>
+                    <ul>
+                        <li><strong>Custom CNN:</strong> Built from scratch.</li>
+                        <li><strong>EfficientNetB0:</strong> Transfer learning applied to a state-of-the-art architecture.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>🔬 5. Lab 2: Bayesian LR vs SVM</h4>
+                    <p>SVM significantly outperformed Bayesian LR. The RBF kernel successfully mapped the complex, non-linear boundaries of the disease features, whereas Logistic Regression was limited to linear boundaries.</p>
+                    <div class="img-container">
+                        <img src="lab2_output.png" alt="Lab 2 Comparisons">
+                        <div class="img-caption">Figure 2: Accuracy Comparison (Lab 2)</div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+
+            <!-- COLUMN 3: FINAL RESULTS & CONCLUSION -->
+            <div class="column">
+                <div class="card">
+                    <h4>🏆 6. Final Benchmarking Results</h4>
+                    <p>Deep learning networks learning raw pixel hierarchies completely outperformed handcrafted classical features.</p>
+                    <table>
+                        <tr>
+                            <th>Model</th>
+                            <th>Accuracy</th>
+                            <th>F1-Score</th>
+                        </tr>
+                        <tr class="winner">
+                            <td>EfficientNetB0</td>
+                            <td>96.42%</td>
+                            <td>0.96</td>
+                        </tr>
+                        <tr>
+                            <td>Custom CNN</td>
+                            <td>86.14%</td>
+                            <td>0.86</td>
+                        </tr>
+                        <tr>
+                            <td>SVM (RBF)</td>
+                            <td>81.18%</td>
+                            <td>0.81</td>
+                        </tr>
+                        <tr>
+                            <td>Gradient Boosting</td>
+                            <td>70.77%</td>
+                            <td>0.70</td>
+                        </tr>
+                        <tr>
+                            <td>Bayesian LR</td>
+                            <td>65.65%</td>
+                            <td>0.65</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="img-container" style="margin-top: 10px;">
+                        <img src="artifacts/figures/cm_efficientnetb0.png" alt="Confusion Matrix">
+                        <div class="img-caption">Figure 3: EfficientNetB0 Confusion Matrix</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>🚀 7. Conclusion & Deployment</h4>
+                    <p><strong>Key Finding:</strong> Automated feature extraction via deep CNNs (EfficientNetB0) achieved state-of-the-art accuracy (<span class="metric-pill">96.4%</span>), proving highly robust against lighting and texture variations.</p>
+                    <p><strong>Deployment:</strong> The final model has been successfully deployed as an interactive <strong>Streamlit Web App</strong>, allowing users to upload leaves for instant, AI-driven diagnostics.</p>
+                </div>
+            </div>
+
+        </div> <!-- End Content -->
+    </div> <!-- End Poster -->
 
 </body>
 </html>
