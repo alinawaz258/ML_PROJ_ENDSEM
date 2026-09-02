@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Poster: Tomato Leaf Disease Detection</title>
+    <style>
+        :root {
+            --primary-color: #003366; /* Deep Academic Blue */
+            --secondary-color: #4CAF50; /* Agriculture Green */
+            --bg-color: #f4f6f8;
+            --box-bg: #ffffff;
+            --text-color: #333333;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            /* A3 Size Ratio roughly */
+            width: 1200px;
+            height: 1697px;
+            margin: 20px auto;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            background: white;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .poster-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 8px solid var(--secondary-color);
+        }
+
+        .poster-header h1 {
+            margin: 0;
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .poster-header h2 {
+            margin: 15px 0 5px 0;
+            font-size: 28px;
+            font-weight: 400;
+        }
+
+        .poster-header h3 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 300;
+            color: #d1e0e0;
+        }
+
+        .poster-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+            padding: 30px;
+            height: calc(100% - 300px);
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .section-box {
+            background: var(--box-bg);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 2px solid #e0e0e0;
+            border-top: 6px solid var(--primary-color);
+        }
+
+        .section-box h4 {
+            margin: -20px -20px 20px -20px;
+            padding: 15px 20px;
+            background: #f0f4f8;
+            color: var(--primary-color);
+            font-size: 24px;
+            border-bottom: 2px solid #e0e0e0;
+            border-radius: 8px 8px 0 0;
+        }
+
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .img-container {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .img-container img {
+            max-width: 100%;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .img-caption {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 16px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="poster-header">
+        <h1>AI-Based Tomato Leaf Disease Detection</h1>
+        <h2>Ali Nawaz</h2>
+        <h3>SRM Institute of Science and Technology</h3>
+    </div>
+
+    <div class="poster-content">
+        <!-- COLUMN 1 -->
+        <div class="column">
+            <div class="section-box">
+                <h4>1. Abstract & Introduction</h4>
+                <p>Tomato diseases severely impact agricultural yield and quality. Early and accurate detection is crucial for effective disease management.</p>
+                <p>This project develops a comprehensive Machine Learning and Deep Learning pipeline to automatically classify tomato leaf diseases from images, comparing classical feature engineering against modern deep learning architectures.</p>
+            </div>
+
+            <div class="section-box">
+                <h4>2. Dataset Overview</h4>
+                <p>The <strong>PlantVillage</strong> dataset subset for Tomatoes was utilized.</p>
+                <ul>
+                    <li><strong>Total Images:</strong> 16,011</li>
+                    <li><strong>Classes:</strong> 9 Diseases + 1 Healthy</li>
+                    <li><strong>Split:</strong> 70% Train, 15% Val, 15% Test</li>
+                </ul>
+                <div class="img-container">
+                    <img src="artifacts/figures/sample_images.png" alt="Sample Images">
+                    <div class="img-caption">Sample leaf images across different classes</div>
+                </div>
+            </div>
+            
+            <div class="section-box">
+                <h4>3. Feature Engineering (Classical ML)</h4>
+                <p>To train classical ML models, raw images were converted into numerical features:</p>
+                <ul>
+                    <li><strong>HOG:</strong> Captured shape and edge gradients.</li>
+                    <li><strong>LBP:</strong> Captured leaf texture patterns.</li>
+                    <li><strong>Color Histograms:</strong> Captured disease discoloration (HSV space).</li>
+                </ul>
+                <p><strong>Dimensionality Reduction:</strong> Principal Component Analysis (PCA) was applied to reduce the 1,886-dimensional feature vector down to the top <strong>50 principal components</strong> for efficiency.</p>
+            </div>
+        </div>
+
+        <!-- COLUMN 2 -->
+        <div class="column">
+            <div class="section-box">
+                <h4>4. Methodology & Models</h4>
+                <p>We conducted a comparative study across three paradigms:</p>
+                
+                <p><strong>A. Regression (Baseline)</strong><br>
+                Attempted to predict class indices continuously. As expected, performance was very poor (R² = 0.30, Acc = 15%), proving regression is unsuitable for categorical classification.</p>
+                
+                <p><strong>B. Classical ML Classifiers</strong><br>
+                Trained on PCA features. Evaluated Bayesian Logistic Regression, Decision Trees, Random Forests, Gradient Boosting, and Support Vector Machines (SVM).</p>
+                
+                <p><strong>C. Deep Learning (Neural Networks)</strong><br>
+                Trained directly on raw pixel data ($128 \times 128 \times 3$).</p>
+                <ul>
+                    <li><strong>Custom CNN:</strong> A 3-block convolutional neural network built from scratch in PyTorch.</li>
+                    <li><strong>EfficientNetB0:</strong> Transfer learning applied to a state-of-the-art pre-trained architecture.</li>
+                </ul>
+            </div>
+
+            <div class="section-box">
+                <h4>5. Lab Results: Bayesian LR vs SVM</h4>
+                <p>Using the handcrafted PCA features, SVM significantly outperformed Bayesian Logistic Regression due to its RBF kernel's ability to model non-linear boundaries.</p>
+                <div class="img-container">
+                    <img src="lab2_output.png" alt="Lab 2 Output">
+                    <div class="img-caption">Accuracy Comparison: Lab 2 Results</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMN 3 -->
+        <div class="column">
+            <div class="section-box">
+                <h4>6. Final Benchmarking Results</h4>
+                <p>Deep learning models trained on raw images drastically outperformed classical models trained on handcrafted features.</p>
+                <table>
+                    <tr>
+                        <th>Model</th>
+                        <th>Accuracy</th>
+                        <th>F1-Score</th>
+                    </tr>
+                    <tr>
+                        <td class="highlight">EfficientNetB0</td>
+                        <td class="highlight">96.42%</td>
+                        <td class="highlight">0.96</td>
+                    </tr>
+                    <tr>
+                        <td>Custom CNN</td>
+                        <td>86.14%</td>
+                        <td>0.86</td>
+                    </tr>
+                    <tr>
+                        <td>SVM (RBF)</td>
+                        <td>81.18%</td>
+                        <td>0.81</td>
+                    </tr>
+                    <tr>
+                        <td>Gradient Boosting</td>
+                        <td>70.77%</td>
+                        <td>0.70</td>
+                    </tr>
+                    <tr>
+                        <td>Bayesian LR</td>
+                        <td>65.65%</td>
+                        <td>0.65</td>
+                    </tr>
+                </table>
+                <div class="img-container">
+                    <img src="artifacts/figures/cm_efficientnetb0.png" alt="EfficientNet Confusion Matrix">
+                    <div class="img-caption">Confusion Matrix: EfficientNetB0 (96.42% Acc)</div>
+                </div>
+            </div>
+
+            <div class="section-box">
+                <h4>7. Conclusion & Deployment</h4>
+                <ul>
+                    <li><strong>Deep Learning Wins:</strong> EfficientNetB0 achieved 96.4% accuracy, proving that automated feature extraction via CNNs is superior for complex agricultural image data.</li>
+                    <li><strong>Deployment:</strong> The best model is deployed via a <strong>Streamlit Web Application</strong>, allowing farmers to upload leaf photos and receive real-time disease diagnostics and confidence probabilities.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
